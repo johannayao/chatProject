@@ -42,7 +42,7 @@ function Principal() {
 
   useEffect(() => {
     axios
-      .get(process.env.IP_SERVER + "/api/chat", {
+      .get("https://chatproject-q1bs.onrender.com" + "/api/chat", {
         headers: { Authorization: JSON.parse(localStorage.getItem("user")) }
       })
       .then((e) => {

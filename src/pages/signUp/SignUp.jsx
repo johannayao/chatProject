@@ -23,7 +23,7 @@ export default function SignUp() {
     console.log(donnee);
 
     const request = await axios.post(
-      process.env.IP_SERVER + "/api/auth/signUp",
+      "https://chatproject-q1bs.onrender.com" + "/api/auth/signUp",
       donnee
     );
     
