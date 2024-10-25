@@ -42,7 +42,7 @@ function Principal() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/chat", {
+      .get(process.env.IP_SERVER + "/api/chat", {
         headers: { Authorization: JSON.parse(localStorage.getItem("user")) }
       })
       .then((e) => {

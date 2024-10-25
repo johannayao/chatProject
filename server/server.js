@@ -10,6 +10,9 @@ import chatRouter from "./routers/chat.router.js";
 import { checkUser } from "./middlewares/checkUser.js";
 import { insertChat, addMessage } from "./controllers/chat.controller.js";
 import { verifyToken } from "./lib/jwt.js";
+import path, { dirname } from "path";
+import { fileURLToPath } from "node:url";
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 dotenv.config();
 
@@ -18,9 +21,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "../dist")));
 
 app.use("/api/auth", authRouter);
 app.use("/api/chat", checkUser, chatRouter);
+
+app.get("/", (req, res) =>
+  res.sendFile(path.join(__dirname, "../dist", "index.html"))
+);
+app.get("/*", (req, res) =>
+  res.sendFile(path.join(__dirname, "../dist", "index.html"))
+);
 
 /* creation of server */
 const server = http.createServer(app);
