@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { io } from "socket.io-client";
 export const useSocket = () => {
   const socket = useRef(
-    new io("http://localhost:4000", {
+    new io("https://chatproject-q1bs.onrender.com", {
       auth: {
         token: `${JSON.parse(localStorage.getItem("user"))}`
       },
